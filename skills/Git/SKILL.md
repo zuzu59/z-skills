@@ -1,5 +1,5 @@
 ---
-name: Git-commiter
+name: git
 description: Git best practices
 license: MIT
 compatibility: opencode

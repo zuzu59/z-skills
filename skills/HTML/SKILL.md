@@ -1,5 +1,5 @@
 ---
-name: HTML
+name: html
 description: HTML kept simple
 license: MIT
 compatibility: opencode
