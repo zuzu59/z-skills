@@ -21,11 +21,13 @@ next_step: steps/step-06-resolve.md
 
 ## EXECUTION PROTOCOLS:
 
-- 🎯 Launch 3+ parallel review agents via Task tool in ONE message (unless economy_mode)
-- 🛑 NEVER launch only 1 review agent — you MUST launch Security + Logic + Clean Code as separate agents
+- 🎯 Launch 4+ parallel review sub-agents in ONE message (unless economy_mode)
+- 🛑 NEVER launch only 1 review agent - you MUST launch Security + Logic + Clean Code + Thermo-Nuclear as separate agents
+- 🛑 NEVER skip the Thermo-Nuclear quality audit - it is the final maintainability gate
 - 💾 Document all findings with severity
 - 📖 Create todos for each finding
 - 🚫 FORBIDDEN to skip security analysis
+- 🚫 FORBIDDEN to skip thermo-nuclear maintainability review
 - 🚫 FORBIDDEN to combine review categories into a single agent
 
 ## CONTEXT BOUNDARIES:
@@ -34,7 +36,7 @@ next_step: steps/step-06-resolve.md
 - All tests pass
 - Now looking for issues that tests miss
 - Adversarial mindset - assume bugs exist
-- **If `{teams_mode}` = true:** Agent team is still alive. Do NOT shutdown teammates — that happens in step-09-finish only.
+- **If `{teams_mode}` = true:** Agent team is still alive. Do NOT shutdown teammates - that happens in step-09-finish only.
 
 ## YOUR TASK:
 
@@ -102,23 +104,33 @@ Group files: source, tests, config, other.
 - [ ] Follows existing patterns
 - [ ] No code duplication
 - [ ] Clear naming
+
+## Thermo-Nuclear Maintainability Checklist
+- [ ] No file pushed from under 1k lines to over 1k lines without strong justification
+- [ ] No new ad-hoc conditionals / spaghetti branches in unrelated flows
+- [ ] No thin abstractions, identity wrappers, or "magic" mechanisms added
+- [ ] No unnecessary casts / `any` / `unknown` / optional params muddying contracts
+- [ ] Feature logic stays in the canonical layer (no leaking into shared paths)
+- [ ] Reuses existing canonical helpers instead of bespoke near-duplicates
+- [ ] No "code judo" simplification was missed (could this be dramatically simpler?)
+- [ ] Orchestration is parallel / atomic where the cleaner structure is obvious
 ```
 
 **If `{economy_mode}` = false:**
-→ Launch parallel review agents using the **Task tool**
+→ Launch parallel review sub-agents.
 
-**🛑 CRITICAL: You MUST launch ALL 3 agents (or 4 if Next.js) in a SINGLE message using MULTIPLE Task tool calls. DO NOT launch them one at a time. DO NOT use only 1 agent. Each agent reviews a DIFFERENT aspect.**
+**🛑 CRITICAL: You MUST launch ALL 4 agents (or 5 if Next.js) in a SINGLE message using MULTIPLE sub-agent launches. DO NOT launch them one at a time. DO NOT use only 1 agent. Each agent reviews a DIFFERENT aspect. The Thermo-Nuclear agent is MANDATORY and runs alongside the others.**
 
 First, gather the list of modified files:
 ```bash
 git diff --name-only HEAD~1
 ```
 
-Then, in **ONE message with 3+ parallel Task tool calls**, launch:
+Then, in **ONE message with 4+ parallel sub-agent launches**, launch:
 
 ---
 
-**Agent 1: Security Review** — `subagent_type: "code-reviewer"`
+**Agent 1: Security Review** - sub-agent profile/type: `code-reviewer`
 ```
 prompt: |
   You are a SECURITY reviewer. Review ONLY the following files for security vulnerabilities:
@@ -138,7 +150,7 @@ prompt: |
 
 ---
 
-**Agent 2: Logic & Edge Cases Review** — `subagent_type: "code-reviewer"`
+**Agent 2: Logic & Edge Cases Review** - sub-agent profile/type: `code-reviewer`
 ```
 prompt: |
   You are a LOGIC reviewer. Review ONLY the following files for logic correctness:
@@ -158,7 +170,7 @@ prompt: |
 
 ---
 
-**Agent 3: Clean Code & Quality Review** — `subagent_type: "code-reviewer"`
+**Agent 3: Clean Code & Quality Review** - sub-agent profile/type: `code-reviewer`
 ```
 prompt: |
   You are a CLEAN CODE reviewer. Review ONLY the following files for code quality:
@@ -178,7 +190,42 @@ prompt: |
 
 ---
 
-**Agent 4: Vercel/Next.js Best Practices** (CONDITIONAL — launch alongside Agents 1-3)
+**Agent 4: Thermo-Nuclear Code Quality Review** (MANDATORY - launch alongside Agents 1-3)
+
+This is the **final verification gate**. After the other reviewers find issues, this agent performs an extremely strict maintainability audit using the `thermo-nuclear-code-quality-review` skill. It is **not optional** and must run on every examine pass.
+
+Sub-agent profile/type: `thermo-nuclear-code-quality-review`
+```
+prompt: |
+  Perform a Thermo-Nuclear Code Quality Review on the current branch's changes.
+
+  Modified files to audit:
+  {list of modified files}
+
+  Load and strictly apply the rubric from the `thermo-nuclear-code-quality-review` skill.
+
+  Verify and challenge:
+  - Structural code-quality regressions and missed "code judo" opportunities
+  - Any file pushed from under 1k lines to over 1k lines (presumptive blocker)
+  - New ad-hoc conditionals or spaghetti branching bolted onto unrelated flows
+  - Thin abstractions, identity wrappers, pass-through helpers, "magic" mechanisms
+  - Unnecessary casts, `any`, `unknown`, optional params obscuring real contracts
+  - Feature logic leaking into shared/canonical paths
+  - Bespoke helpers duplicating existing canonical utilities
+  - Unnecessary sequential orchestration or non-atomic update flows
+  - Whether the implementation could be dramatically simpler / smaller / more direct
+
+  For each finding, provide: file:line, severity (CRITICAL/HIGH/MEDIUM/LOW), description, and a concrete restructuring suggestion (prefer DELETING complexity over rearranging it).
+
+  Be ambitious, direct, and demanding. Do not soften major maintainability issues.
+  Apply the skill's Approval Bar strictly - flag presumptive blockers explicitly.
+
+  If no significant maintainability issues found, explicitly state "No thermo-nuclear findings."
+```
+
+---
+
+**Agent 5: Vercel/Next.js Best Practices** (CONDITIONAL - launch alongside Agents 1-4)
 
 → **Detection:** Check if modified files match Next.js/Vercel patterns:
 ```
@@ -190,9 +237,9 @@ prompt: |
 - Server components, client components
 ```
 
-→ **If Next.js/Vercel code detected:** Add a 4th parallel Task tool call:
+→ **If Next.js/Vercel code detected:** Add a 5th parallel review sub-agent:
 
-`subagent_type: "code-reviewer"`
+Sub-agent profile/type: `code-reviewer`
 ```
 prompt: |
   You are a NEXT.JS / REACT PERFORMANCE reviewer. Review ONLY the following files:
@@ -211,11 +258,11 @@ prompt: |
   If no performance issues found, explicitly state "No performance issues found."
 ```
 
-→ **If NOT Next.js/Vercel code:** Skip this agent (launch only Agents 1-3)
+→ **If NOT Next.js/Vercel code:** Skip this agent (launch only Agents 1-4)
 
 ---
 
-**🛑 REMINDER: You MUST have 3+ Task tool calls in a SINGLE response. If you only launched 1 agent, you are doing it WRONG. Go back and launch all agents.**
+**🛑 REMINDER: You MUST have 4+ sub-agent launches in a SINGLE response (Security + Logic + Clean Code + Thermo-Nuclear, plus Next.js if applicable). If you only launched 1-3 agents, you are doing it WRONG. Go back and launch all agents. The Thermo-Nuclear agent is MANDATORY - never skip it.**
 
 ### 4. Classify Findings
 
@@ -308,11 +355,13 @@ Append to `{output_dir}/05-examine.md`:
 ✅ Validity assessed for each finding
 ✅ Findings table presented
 ✅ Todos created for tracking
+✅ Thermo-Nuclear maintainability audit completed (mandatory final gate)
 ✅ Next.js/Vercel best practices checked (if applicable)
 
 ## FAILURE MODES:
 
-❌ **CRITICAL**: Launching only 1 review agent instead of 3+ — each category (Security, Logic, Clean Code) MUST be a separate agent
+❌ **CRITICAL**: Launching only 1 review agent instead of 4+ - each category (Security, Logic, Clean Code, Thermo-Nuclear) MUST be a separate agent
+❌ **CRITICAL**: Skipping the Thermo-Nuclear maintainability review - it is the mandatory final verification gate
 ❌ Combining multiple review categories into a single agent prompt
 ❌ Skipping security review
 ❌ Not classifying by severity

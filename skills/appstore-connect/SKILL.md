@@ -17,7 +17,7 @@ asc doctor                 # diagnose auth/config issues
 ```
 
 - Multiple accounts/teams: `asc --profile <name> <command>` selects a profile.
-- A NEW account with no stored key: run the `appstore-connect-setup` skill (locates the `.p8`, key id, and issuer id, then `asc auth login`). Never print or commit `.p8` keys, key ids, or issuer ids.
+- A NEW account with no stored key: run the `find-asc-credentials` skill (locates the `.p8`, key id, and issuer id, then `asc auth login`). Never print or commit `.p8` keys, key ids, or issuer ids.
 </auth>
 
 <how_to_drive>
