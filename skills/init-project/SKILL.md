@@ -75,7 +75,7 @@ The agent MUST use a temporary root checklist file to force strict ordering.
 Checklist file:
 
 - Runtime path: `INIT_CHECKLIST.md` at the project root.
-- Template path: `.agents/skills/init-project/templates/INIT_CHECKLIST.md`.
+- Template path: `templates/INIT_CHECKLIST.md`.
 - Create it in Step 1 before any setup command if it does not exist.
 - Update it before and after every step by checking boxes and filling the small form fields.
 - Update it with normal file edits; do not overwrite the whole checklist unless creating it from the template.

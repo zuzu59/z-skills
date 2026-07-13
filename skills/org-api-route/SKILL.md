@@ -60,7 +60,7 @@ Before editing, read:
 ## Documentation Rules
 
 - Always create one doc page per public endpoint.
-- Use `.agents/skills/add-documentation/scripts/create-doc.sh` for new docs,
+- Use `../add-documentation/scripts/create-doc.sh` for new docs,
   then replace the generated template with endpoint-specific content.
 - Title pages by operation, not broad groups:
   - `List Organization Members API`

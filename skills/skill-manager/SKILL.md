@@ -48,8 +48,8 @@ Keep references one level deep. Reference them by name in SKILL.md so the agent 
 
 When a skill or agent needs online research, name the exact research skill to use instead of relying on vague web-search language:
 
-- Use `/Users/melvynx/.agents/skills/find-docs/SKILL.md` for current technical documentation, API references, config options, SDKs, CLIs, cloud services, and code examples.
-- Use `/Users/melvynx/.agents/skills/exa-search/SKILL.md` for broader online research, recent information, source discovery, similar pages, URL extraction, or cited web answers.
+- Use `../find-docs/SKILL.md` for current technical documentation, API references, config options, SDKs, CLIs, cloud services, and code examples.
+- Use `../exa-search/SKILL.md` for broader online research, recent information, source discovery, similar pages, URL extraction, or cited web answers.
 - Mention default harness tools for local code, file, git, shell, and browser inspection.
 - Keep built-in `WebSearch` and `WebFetch` as fallback tools unless the user explicitly asks for them.
 - For restricted agents, include `Skill` and `Bash` in the tool list when these skills need to run local CLIs.

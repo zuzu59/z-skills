@@ -24,16 +24,16 @@ Do not use this for normal feature branches that should only pull from their own
 Run the bundled script from the repository root:
 
 ```bash
-.agents/skills/sync-with-nowstack/scripts/sync-with-nowstack.sh
+scripts/sync-with-nowstack.sh
 ```
 
 Common options:
 
 ```bash
-.agents/skills/sync-with-nowstack/scripts/sync-with-nowstack.sh --dry-run
-.agents/skills/sync-with-nowstack/scripts/sync-with-nowstack.sh --rebase
-.agents/skills/sync-with-nowstack/scripts/sync-with-nowstack.sh --branch main
-.agents/skills/sync-with-nowstack/scripts/sync-with-nowstack.sh --repo your-org/nowstack
+scripts/sync-with-nowstack.sh --dry-run
+scripts/sync-with-nowstack.sh --rebase
+scripts/sync-with-nowstack.sh --branch main
+scripts/sync-with-nowstack.sh --repo your-org/nowstack
 ```
 
 </quick_start>

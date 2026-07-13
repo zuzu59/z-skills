@@ -101,7 +101,7 @@ base_output_dir: ~/.claude/output/saas
 
 Run setup script with Bash tool (path is relative to this skill folder):
 ```bash
-.agents/skills/create-saas-idea/scripts/setup.sh {project_id}
+scripts/setup.sh {project_id}
 ```
 
 ### 4. Confirm Initialization

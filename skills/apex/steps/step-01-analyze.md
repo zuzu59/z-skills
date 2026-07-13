@@ -141,8 +141,8 @@ Task: {task_description}
 | Agent | Use When |
 |-------|----------|
 | `explore-codebase` | Need to find existing patterns, related files, utilities |
-| `explore-docs` | Unfamiliar library API, current syntax, complex feature. Must use `/Users/melvynx/.agents/skills/find-docs/SKILL.md`, with `/Users/melvynx/.agents/skills/exa-search/SKILL.md` only as fallback for source discovery. |
-| `websearch` | Common approaches, best practices, gotchas, recent context. Must use `/Users/melvynx/.agents/skills/exa-search/SKILL.md`, with `/Users/melvynx/.agents/skills/find-docs/SKILL.md` first for technical docs. |
+| `explore-docs` | Unfamiliar library API, current syntax, complex feature. Must use `../../find-docs/SKILL.md`, with `../../exa-search/SKILL.md` only as fallback for source discovery. |
+| `websearch` | Common approaches, best practices, gotchas, recent context. Must use `../../exa-search/SKILL.md`, with `../../find-docs/SKILL.md` first for technical docs. |
 
 **Decision Matrix:**
 
@@ -185,8 +185,8 @@ Find:
 3. Configuration needed
 
 Required tool routing:
-- Use /Users/melvynx/.agents/skills/find-docs/SKILL.md first.
-- Use /Users/melvynx/.agents/skills/exa-search/SKILL.md only if docs are missing or broader source discovery is needed.
+- Use `../../find-docs/SKILL.md` first.
+- Use `../../exa-search/SKILL.md` only if docs are missing or broader source discovery is needed.
 ```
 
 **`websearch`** - Use for approaches and gotchas:
@@ -196,8 +196,8 @@ Search: {specific_question_or_approach}
 Find common patterns and pitfalls.
 
 Required tool routing:
-- Use /Users/melvynx/.agents/skills/exa-search/SKILL.md first.
-- Use /Users/melvynx/.agents/skills/find-docs/SKILL.md first instead when the question is about a specific library, framework, SDK, CLI, cloud service, API, or code example.
+- Use `../../exa-search/SKILL.md` first.
+- Use `../../find-docs/SKILL.md` first instead when the question is about a specific library, framework, SDK, CLI, cloud service, API, or code example.
 ```
 
 ---

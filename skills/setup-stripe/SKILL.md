@@ -52,7 +52,7 @@ The agent MUST use a temporary root checklist file to force strict ordering.
 
 Checklist file:
 - Runtime path: `SETUP_STRIPE_CHECKLIST.md` at the project root.
-- Template path: `.agents/skills/setup-stripe/templates/SETUP_STRIPE_CHECKLIST.md`.
+- Template path: `templates/SETUP_STRIPE_CHECKLIST.md`.
 - Create it in Step 0 before any setup command if it does not exist.
 - Update it before and after every step by checking boxes and filling the state fields.
 - Update it with normal file edits; do not overwrite the whole checklist unless creating it from the template.

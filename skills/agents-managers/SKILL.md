@@ -215,7 +215,7 @@ Common tags for agent structure:
 
 Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
 
-For XML structure principles and token efficiency details, see @skills/create-agent-skills/references/use-xml-tags.md - the same principles apply to agents.
+For XML structure principles and token efficiency details, see `../skill-creator/references/xml-tag-guide.md` - the same principles apply to agents.
 </critical_rule>
 </agent_xml_structure>
 

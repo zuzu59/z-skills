@@ -11,10 +11,10 @@ Create well-structured documentation files in `content/docs/` for NowStack featu
 **MANDATORY: Use the script to create new documentation files:**
 
 ```bash
-.agents/skills/add-documentation/scripts/create-doc.sh <filename> "<title>" "<description>"
+scripts/create-doc.sh <filename> "<title>" "<description>"
 
 # Example
-.agents/skills/add-documentation/scripts/create-doc.sh dialog-system "Dialog System" "Global dialog system for modals"
+scripts/create-doc.sh dialog-system "Dialog System" "Global dialog system for modals"
 ```
 
 This creates `content/docs/<filename>.mdx` with proper structure.
@@ -225,7 +225,7 @@ For detailed documentation patterns and complete examples:
 **NEVER create documentation files manually. ALWAYS use the script:**
 
 ```bash
-.agents/skills/add-documentation/scripts/create-doc.sh <filename> "<title>" "<description>"
+scripts/create-doc.sh <filename> "<title>" "<description>"
 ```
 
 Then edit the generated file to add content.

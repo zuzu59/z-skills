@@ -170,19 +170,19 @@ When the user provides the values, save only Cloudflare setup values (`CLOUDFLAR
 Then run:
 
 ```bash
-node .agents/skills/init-project/scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --save-cloudflare-env
+node scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --save-cloudflare-env
 ```
 
 If the user provided an exact custom file domain, pass it explicitly:
 
 ```bash
-node .agents/skills/init-project/scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --custom-domain "r2.example.com" --save-cloudflare-env
+node scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --custom-domain "r2.example.com" --save-cloudflare-env
 ```
 
 If the user provided a base domain and it differs from `SiteConfig.domain`, pass it explicitly:
 
 ```bash
-node .agents/skills/init-project/scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --domain "example.com" --save-cloudflare-env
+node scripts/setup-cloudflare-r2.mjs --bucket "{app_id}" --domain "example.com" --save-cloudflare-env
 ```
 
 The helper must:

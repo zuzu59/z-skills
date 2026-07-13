@@ -84,8 +84,8 @@ Instead of launching exploration agents, use this pattern:
    - Library documentation needed
    - Unknown API or pattern
    - Limit to 1-2 searches max
-   - Use /Users/melvynx/.agents/skills/find-docs/SKILL.md for technical docs
-   - Use /Users/melvynx/.agents/skills/exa-search/SKILL.md for broader web research
+   - Use `../../find-docs/SKILL.md` for technical docs
+   - Use `../../exa-search/SKILL.md` for broader web research
 ```
 
 ---

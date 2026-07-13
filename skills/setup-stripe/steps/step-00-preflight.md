@@ -24,7 +24,7 @@ STRIPE STATE: step=0; waiting_for=none; completed=none
 Create the runtime checklist before setup commands:
 
 ```bash
-test -f SETUP_STRIPE_CHECKLIST.md || cp .agents/skills/setup-stripe/templates/SETUP_STRIPE_CHECKLIST.md SETUP_STRIPE_CHECKLIST.md
+test -f SETUP_STRIPE_CHECKLIST.md || cp templates/SETUP_STRIPE_CHECKLIST.md SETUP_STRIPE_CHECKLIST.md
 ```
 
 Then update `SETUP_STRIPE_CHECKLIST.md`:
@@ -66,7 +66,7 @@ If Convex asks for login/team/project selection, stop and let the user complete 
 ```bash
 node -e "import('stripe').then(() => console.log('stripe ok'))"
 test -f scripts/setup-stripe-webhook.mjs && echo "webhook helper ok"
-test -f .agents/skills/setup-stripe/scripts/create-stripe-plans.mjs && echo "price helper ok"
+test -f scripts/create-stripe-plans.mjs && echo "price helper ok"
 ```
 
 ### 4. Inspect current billing shape

@@ -34,7 +34,7 @@ Do not load Step 2a until the GitHub repo was bootstrapped or explicitly verifie
 Create the runtime checklist before setup commands:
 
 ```bash
-test -f INIT_CHECKLIST.md || cp .agents/skills/init-project/templates/INIT_CHECKLIST.md INIT_CHECKLIST.md
+test -f INIT_CHECKLIST.md || cp templates/INIT_CHECKLIST.md INIT_CHECKLIST.md
 ```
 
 Then update `INIT_CHECKLIST.md`:

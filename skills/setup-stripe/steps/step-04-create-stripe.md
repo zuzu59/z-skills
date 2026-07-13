@@ -37,19 +37,19 @@ Stop until confirmed.
 Dry-run first. This reads `convex/billing/plans.ts` through `pnpm exec tsx` and does not touch Stripe or Convex env:
 
 ```bash
-node .agents/skills/setup-stripe/scripts/create-stripe-plans.mjs --dry-run
+node scripts/create-stripe-plans.mjs --dry-run
 ```
 
 If the dry-run output matches the intended `BILLING_PLANS`, create/reuse Stripe objects and set price IDs in Convex env:
 
 ```bash
-node .agents/skills/setup-stripe/scripts/create-stripe-plans.mjs --set-convex-env
+node scripts/create-stripe-plans.mjs --set-convex-env
 ```
 
 For live mode, after explicit confirmation, prefix the real command:
 
 ```bash
-SETUP_STRIPE_LIVE_CONFIRMED=1 node .agents/skills/setup-stripe/scripts/create-stripe-plans.mjs --set-convex-env
+SETUP_STRIPE_LIVE_CONFIRMED=1 node scripts/create-stripe-plans.mjs --set-convex-env
 ```
 
 Verify Convex price envs:
